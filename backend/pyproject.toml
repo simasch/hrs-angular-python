@@ -1,0 +1,46 @@
+[project]
+name = "hrs-backend"
+version = "0.1.0"
+description = "Hotel Reservation System backend (FastAPI + DynamoDB)"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "fastapi",
+    "pydantic",
+    "pydantic-settings",
+    "boto3",
+    "mangum",
+    "aws-lambda-powertools[tracer]",
+    "uvicorn[standard]",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "httpx",
+    "moto[dynamodb]",
+    "ruff",
+    "pyright",
+    "pre-commit",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B"]
+
+[tool.pyright]
+pythonVersion = "3.13"
+typeCheckingMode = "standard"
+include = ["app", "tests"]
+reportMissingTypeStubs = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+pythonpath = ["."]

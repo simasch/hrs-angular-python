@@ -1,0 +1,29 @@
+[project]
+name = "hrs-cdk"
+version = "0.1.0"
+description = "AWS CDK app for HRS — DynamoDB + Lambda + API Gateway"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "aws-cdk-lib",
+    "constructs",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "ruff",
+    "pyright",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.pyright]
+pythonVersion = "3.13"
+typeCheckingMode = "basic"
+include = ["app.py", "stacks", "tests"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
